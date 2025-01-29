@@ -1,34 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import responseMovies from "./assets/mocks/results.json"
+import noResults from "./assets/mocks/no-results.json"
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const movies = responseMovies.Search;
+  const hasMovies = movies?.length > 0;
+console.log(hasMovies);
+console.log(movies);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='page'>
+
+      <header>
+        <h1>Buscador de películas</h1>
+        <form className='form'>
+          <input placeholder='The Substance", "Spiderman"' />
+          <button type="submit"> Buscar </button>
+        </form>
+      </header>
+
+      <main>
+        {
+          hasMovies
+            ? (
+              <ul>
+                {
+                  movies.map(movie => (
+                    <li key={movie.imdbID}>
+                      <h3> {movie.Title}</h3>
+                      <p>{movie.Year}</p>
+                      <img src={movie.Poster} alt={movie.Title} />
+
+                    </li>
+                  ))
+                }
+              </ul>
+            )
+            : (
+              <p>No se encontraron películas para ésta búsqueda</p>
+            )
+        }
+      </main>
+    </div>
   )
 }
 
