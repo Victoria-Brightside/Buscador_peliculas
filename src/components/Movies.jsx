@@ -9,7 +9,6 @@ function ListOfMovies({ movies }) {
                         <h3> {movie.Title}</h3>
                         <p>{movie.Year}</p>
                         <img src={movie.Poster} alt={movie.Title} />
-
                     </li>
                 ))
             }
@@ -25,7 +24,7 @@ function NoMovies() {
 }
 
 
-function Movies({ movies }) {
+export function Movies({ movies }) {
     const hasMovies = movies?.length > 0;
     return (
         hasMovies ? <ListOfMovies movies={movies} />
@@ -34,4 +33,3 @@ function Movies({ movies }) {
     )
 
 }
-export default Movies
