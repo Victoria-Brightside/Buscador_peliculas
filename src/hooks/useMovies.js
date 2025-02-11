@@ -1,15 +1,16 @@
 import { searchMovies } from "../services/movies.js";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function useMovies({ search }) {
   const [movies, setMovies] = useState([])
-
+  const previousSearch = useRef({ search })
 
   const getMovies = async () => {
+    if ({search}==previousSearch.current) return
+
     const newMovies = await searchMovies({ search })
-    console.log("Respuesta de la API:", newMovies);
     setMovies(newMovies)
   }
 
-  return {movies, getMovies }
+  return { movies, getMovies }
 }
