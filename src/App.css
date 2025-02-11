@@ -1,13 +1,23 @@
+html, body, #root {
+  width: 100%;
+  max-width: none;  /* Elimina cualquier restricción de ancho */
+  display:flex;
+  justify-content: center;
+}
+
 .page {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
+  width:100%;
+  max-width:1000px;
 }
 
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .form {

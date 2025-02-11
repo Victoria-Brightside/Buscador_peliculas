@@ -1,15 +1,15 @@
-import responseMovies from "../assets/mocks/results.json"
-import noResults from "../assets/mocks/no-results.json"
+import { searchMovies } from "../services/movies.js";
+import { useState } from "react";
 
-export function useMovies() {
+export function useMovies({ search }) {
+  const [movies, setMovies] = useState([])
 
-const movies = responseMovies.Search;
-const mappedMovies = movies?.map(movie => ({
-  id: movie.imdbID,
-  title: movie.Title,
-  year: movie.Year,
-  poster: movie.Poster
-}))
 
-return {movies:mappedMovies}
+  const getMovies = async () => {
+    const newMovies = await searchMovies({ search })
+    console.log("Respuesta de la API:", newMovies);
+    setMovies(newMovies)
+  }
+
+  return {movies, getMovies }
 }
