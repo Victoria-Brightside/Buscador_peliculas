@@ -6,7 +6,8 @@
     display: grid;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+    gap: 60px;
+    color:aliceblue;
 }
 
 .movie {
@@ -16,6 +17,7 @@
 .movie h3,
 .movie p {
     margin: 0;
+    color:aliceblue;
 }
 
 .movie img {
