@@ -3,7 +3,7 @@ import { Movies } from "./components/Movies.jsx";
 import { useMovies } from "./hooks/useMovies.js"
 import './App.css'
 import { useSearch } from "./hooks/useSearch.js";
-
+import { Footer } from "./components/Footer/index.jsx";
 
 function App() {
   const { search, error, updateSearch } = useSearch();
@@ -34,6 +34,7 @@ function App() {
       <main>
         <Movies movies={movies} />
       </main>
+      <Footer />
     </div>
   )
 }
