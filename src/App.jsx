@@ -1,38 +1,25 @@
 
 import { Movies } from "./components/Movies.jsx";
 import { useMovies } from "./hooks/useMovies.js"
-import './App.css'
 import { useSearch } from "./hooks/useSearch.js";
+import { Header } from "./components/Header/index.jsx"
 import { Footer } from "./components/Footer/index.jsx";
+import './App.css'
 
 function App() {
-  const { search, error, updateSearch } = useSearch();
+  const { search, error, updateSearch, isFirstInput } = useSearch();
   const { movies, getMovies } = useMovies({ search });
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    getMovies({ search })
-  }
-
-  const handleChange = (event) => {
-    const newSearch = event.target.value
-    updateSearch(newSearch)
-  }
+  const handleSearch = (searchTerm) => {
+    getMovies({ search: searchTerm }); // Pasamos la búsqueda a useMovies
+  };
 
   return (
     <div className='page'>
-
-      <header>
-        <h1>Buscador de películas</h1>
-        <form className='form' onSubmit={handleSubmit}>
-          <input onChange={handleChange} value={search} name='query' placeholder='The Substance", "Spiderman"' />
-          <button type="submit"> Buscar </button>
-        </form>
-        {error && <p style={{ color: 'red' }}> {error} </p>}
-      </header>
+      <Header search={search} error={error} updateSearch={updateSearch} onSearch={handleSearch} />
 
       <main>
-        <Movies movies={movies} />
+        <Movies movies={movies} isFirstInput={isFirstInput.current} />
       </main>
       <Footer />
     </div>

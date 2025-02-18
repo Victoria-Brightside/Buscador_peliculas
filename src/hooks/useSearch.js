@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 
-
 export function useSearch() {
   const [search, updateSearch] = useState('')
   const [error, setError] = useState(null)
@@ -13,8 +12,8 @@ export function useSearch() {
     }
 
     if (search === '') {
-      setError('No se puede buscar una película vacía')
-      return
+      setError(null); // No mostrar error si la búsqueda está vacía
+      return;
     }
 
     if (search.match(/^\d+$/)) {

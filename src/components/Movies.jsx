@@ -25,8 +25,10 @@ function NoMovies() {
 }
 
 
-export function Movies({ movies }) {
+export function Movies({ movies, isFirstInput }) {
     const hasMovies = movies?.length > 0;
+    if (isFirstInput) return null;
+    
     return (
         hasMovies ? <ListOfMovies movies={movies} />
             :
